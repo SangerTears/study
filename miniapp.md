@@ -21,4 +21,27 @@
     6.2. 1rpx = 目标设备宽度/750Px
     6.3. 底层做了viewport适配
     6.4 视网膜屏幕
-7. 
+7. 事件绑定和冒泡
+    key value
+    key有两种bind和catch bindtap.catchtouchstart
+    bind事件绑定不会阻止事件向上冒泡, catch时间绑定可以阻止冒泡事件向上冒泡(非冒泡事件)
+8. 对象的简写同名属性可以简写, function的简写
+9. 生命周期函数
+    chrome多进程多线程 进程程序完整执行的过程,操作系统管理 进程-> 线程,一个进程至少有一个线程
+    多线程 好处 线程和线程不相互干扰, 单线程比较慢
+
+    view Thread 线程        APPservice Thread 线程 服务
+                    onLoad  //做初始化的工作
+                    onShow
+                    onReady  //监听页面初始完成
+                    onHide    
+                    onShow
+                    onUnload  //销毁
+10. 如何获取用户信息
+    wx.getUserInfo(object)
+    判断用户是否授权了
+    wx.openSetting({
+        success(data){
+            console.log(data)
+        }
+    })
