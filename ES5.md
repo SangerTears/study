@@ -68,3 +68,46 @@
             this.lastName = names[1]
         }
     }
+
+4. 数组
+    Array.prototype.indexOf(value):得到值在数组中第一个下标
+    Array.prototype.lastindexOf(value):得到值在数组中最后第一个下标
+    Array.prototype.foreach(function(item,index){})
+    Array.prototype.map(function(item,index){}) //遍历一个数组，返回加工一个新的数组
+    Array.prototype.filter(function(item,index){}) //遍历过滤一个新的数组，返回条件为true的值
+
+    var arr = [2,3,4,5,1,6,7,4]
+    arr.forEach(function(item,index){
+        console.log(item,index)
+    })
+
+    var arr2 = arr.map(function(item,index){
+        return item+10;
+    })
+    console.log(arr2);
+
+    var arr3 = arr.filter(function(item,index){
+        return item > 3;
+    })
+
+5.  Function 的扩展
+    Function.prototype.bind(obj);
+    作用是将函数内的this绑定为obj，并将函数返回 
+    call 一个个 apply 数组 是立即调用函数 bind()是将函数返回
+    bind() 是将函数
+
+    var obj = {username: 'kobe'}
+    function foo(data){
+        console.log(this,data);
+    }
+    //传入参数的形式
+    foo.apply(obj，33)  //直接从第二个参数开始，一次传入
+    foo.call(obj,[33])  // 第二个参数必须是数组，传入放在数组里
+
+    foo.bind(obj)() //bind的特点：绑定完this不会立即调用当前的函数，而是将函数返回
+    //bind传参的方式和call一样 bind用来指定回调函数的this
+
+    回调函数
+    setTimeout(function(){
+        console.log(this); window
+    }.bind(obj),1000)

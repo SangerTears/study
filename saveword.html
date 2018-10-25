@@ -1,0 +1,98 @@
+!<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div>
+        <canvas id="canvas"></canvas>
+        <img src="" alt="" id="showPic" onclick="getPic()">
+    </div>
+    <input type="text" name="fillWords" id="fillWords">
+    <button onclick="addWords()"></button>
+    <button onclick="clearPic()">清空</button>
+    <button onclick="savePic()"></button>
+</body>
+<script type="text/javascipt">
+    var x_words; var y_words //用于鼠标获得点击的坐标 用于插入文字
+    var flag = false;
+    var canvas, ctxl;
+
+    canvas = document.getElementById('canvas');
+    canvas.addEventListener('mousemove', onMouseMove, false);
+    canvas.addEventListener('mousedoen', onMouseDown, false);
+    canvas.addEventListener('mouseup', onMouseUp, false);
+
+    canvas.addEventListener('touchstart', onMouseDown, false);
+    canvas.addEventListener('touchmove', onMouseMove, false);
+    canvas.addEventListener('touchend', onMouseUp, false);
+    canvas.height = 700;
+    canvas.width =  750;
+
+    ctx = canvas.getContext('2d');
+    ctx.lineWidth = 3.0; //设置线宽
+    ctx.strokeStyle = '#cc0000';  //设置线的颜色
+
+    function onMouseMove(evt){
+        evt.preventDefault();
+        if (flag) {
+            var p = pos(evt);
+            ctx.lineTo(p.x, p.y);
+            x_words = p.x;
+            y_words = p.y;
+            ctx.lineWith = 1.0; //设置线宽
+            ctx.shadowBlur = 1;
+            ctx.stroke();
+        }
+    }
+    function onMouseDown(evt){
+        evt.preventDefault();
+        ctx.beginPath();
+        var p = pos(evt);
+        ctx.moveTo(p.x, p.y);
+        flag = true;
+    }
+    function onMouseUp(evt) {
+        evt.preventDefault();
+        flag = false;
+    }
+    function clearPic() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    function pos(event) {
+        var x, y;
+        if (isTouch(event)) {
+            x = event.touches[0].pageX;
+            y = event.touches[0].pageY;
+        }
+        return {x: x, y: y};
+    }
+    function isTouch(event) {
+        var type = event.type;
+        if(type.indexOf('touch') >= o) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // 添加文字
+    function addwords(){
+        var words = document.getElementById('fillWords').value;
+        ctx.fillWords = "#cc0000";
+        ctx.fillText(words, x_words, y_words);
+    }
+    
+    function savePic() {
+        var pic =document.getElementById('showPic');
+        var strDataUrl = canvas.toDataURL('image/png');
+        pic.src = strDataUrl;
+    }
+    function getPic() {
+        var pic = document.getElementById('showPic');
+        ctx.drawImage(pic, 0, 0, 700, 750)
+    }
+</script>
+</html>
