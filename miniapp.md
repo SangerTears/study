@@ -161,7 +161,7 @@
     fail
     complate
 
-    let detailed = wx.setstorageSync("iscollected")//同步的
+    let detailed = wx.setstorageSync("iscollected")//同步的 
     console.log(detailed)
     <!-- 判断用户是否收藏 -->
     if(detailed[index]){
@@ -173,3 +173,92 @@
         <!-- 在缓存中初始化空对象 -->
         wx.setStorageSync('isCollected',{})
     }
+
+20. 音乐播放
+    背景音乐播放
+    wx.palyBackgroundAudio
+    控制音乐播放
+    wx.palyBackgroundAudio
+
+    if(isMousicPlay){
+        wx.palyBackgroundAudio({
+            dataUrl: '',//音乐链接
+            title:'' //标题
+        })
+    }
+    //暂停音乐播放
+    wx.pauseBackgroundAudio()
+
+
+    onload里
+    监视音乐
+    wx.onBackgroundAudioPlay(()=>{
+        console.log('音乐播放')
+        this.setData({
+            isMusicPlay:true
+        })
+        appDatas.data.ispaly = true
+        appDatas.data.pageIndex = index
+    })
+    监听音乐暂停
+    wx.onBackgroundAudioPause(()=>{
+        this.setData({
+            isMusicPlay:false
+        })
+        onsole.log('音乐暂停')
+        appDatas.data.ispaly = false
+        <!-- appDatas.data.pageIndex = index -->可以省略
+    })
+    监听音乐停止
+    wx.onBackgroundAudioStop(CALLBACk)
+
+    判断音乐是否在播放
+    if(appDatas.data.isplay && appData.data.index){
+        this.setData({
+            isMusicPlay:true
+        })
+    }
+
+21. App({
+        data:{
+            ispaly: false,
+            pageIndex: null
+        }
+    })
+
+    getApp(){}
+    let appDatas = getApp();
+    console.log(appDates, typeof appdatas)
+
+    音乐播放的思路:
+    1.点击播放背景图片换,播放的图片也在变化
+    2.点击其他音乐页面此页面为暂停状态
+    3.可以切换到当前页面的音乐
+    4.在App.js全局中定义他的状态, AppData用到的时候getApp()调用拿到改变音乐的播放的状态
+
+    onload中获取缓存的数据
+
+22. 微信分享功能
+    wx.showActionSheet(OBJECT)
+    //显示操作菜单
+    <!-- 处理点击分享功能 -->
+    handleShare(){
+        wx.showActionSheet({
+            itemList:[
+                '分享到朋友圈','分享到qq空间','分享到微博'
+            ]
+        })
+    }
+    <button open-type="share">分享</button>
+
+23. tabBar tab栏切换
+   "tabBar":{
+       "list":[
+           "pagePath":"pages/list/list",
+           "text":
+           "iconPage":
+           "selectedIconPaath":
+       ]
+   }
+
+24. 
