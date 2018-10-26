@@ -45,3 +45,131 @@
             console.log(data)
         }
     })
+11. 点击跳转
+    handleClick(){
+        wx.navigateTo({ //保留当前页面,跳转到应用内其他页面
+            url: '/pages/list/list' //记得加根路径'/'
+        })
+        wx.redirectTo(){} //关闭当前,跳转到新的页面
+    }
+12. swiper组件
+    <view>
+        <swiper indicator-dots indicator-color = 'yellow'>
+            <swiper-item>
+                <image src=""></image>
+            </wiper-item>
+        </swiper>
+    </view>
+13. 模板
+    template,可以在模板中定义代码片段,然后在不同的地方调用
+    定义模板
+    <template name="msgItem">
+    </template>
+    使用模板
+    <template is="msgItem" data='{{...item}}'>
+    </template>
+    moudle.export = {list_data};//同名属性可以不写 require.js
+    @import
+    let datas = require('../../data/list-data.js')
+
+14. 列表渲染
+    wx:for = "{{array}}"
+    <block wx:for = "{{array}}" wx:key ="{{key}}">
+        <template is="msgItem" data='{{...item}}'>//...结构对象
+        </template>
+    </block>
+
+15. 点击事件
+    wx.navigationTo({ //保留当前页面onhide调用
+        url:" ?index="+index //写参数都会传到onload里的option里
+    })
+    wx.redirectTo({ // onUnload页面销毁了
+        onUnload
+    })
+    data-index ={{index}}
+    toDetail(event){
+        console.log(event)
+        <!-- 获取点击跳转对应的下标 -->
+    }
+    this.set Data({
+        detailObj:data.list_data[index]
+    })
+
+ 16. 事件委托
+    catchtop = "carouseToDetail"
+    //点击轮博图跳转
+    事件委托
+    carouseToDetail(event){
+        console.log(event.target)
+        wx.navigationTo({ //保留当前页面onhide调用
+            url:" ?index="+index //写参数都会传到onload里的option里
+        })
+    }
+17. currentTarget 和 target 的区别
+    1.target 指向的是触发事件的元素
+    2.currentTarget 指向的是捕获事件的元素
+
+18. 条件渲染   点击切换图片
+    <images catchtap="hanleCollection" wx:if ='{{isShow}}' src=""></images>
+    vx:if ='{{isShow}}'
+    isCollected: false;
+    hanleCollection(){
+        let isCollected = !this.data.iscollected
+        <!-- 更新状态 -->
+        this.setData({
+            isCollected
+        })
+        <!-- 提示用户 -->
+        let title = isCollected?'收藏成功':'取消收藏'
+        wx.showToast({
+            title,
+            icon:'success'
+        })
+        //缓存数据到本地
+        <!-- {1:true, 2:false} -->
+        let {index}= this.data
+        <!-- 不可行 -->
+        
+        let obj =  
+        wx.getStorage({
+            key: "isCollected"
+            success:(datas) =>{
+                console.log(data,typeof data)
+                let obj = datas.data //{0:true}
+                obj[index] = iscollected
+                wx.setStorage({
+                    key:'iscollected',
+                    data: obj,
+                    success:()=>{
+                        console.log('哈哈哈')
+                    }
+                })
+            }
+        })
+        
+    }
+    // 根据用户缓存的数据判断用户是否收藏当前文章
+    wx.showtoast(OBJECT) 显示消息提示框
+    title提示内容
+
+19. 数据存储
+    wx.setStorage(Object)//异步的
+    将数据存储在本地缓存中制定的key中,会覆盖掉原来该key对应内容,这是一个异步接口
+    key
+    data
+    success
+    fail
+    complate
+
+    let detailed = wx.setstorageSync("iscollected")//同步的
+    console.log(detailed)
+    <!-- 判断用户是否收藏 -->
+    if(detailed[index]){
+        this.setData({
+            isCollected: true
+        })
+    }
+    if(!detailStorage){
+        <!-- 在缓存中初始化空对象 -->
+        wx.setStorageSync('isCollected',{})
+    }
