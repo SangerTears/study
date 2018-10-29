@@ -70,6 +70,99 @@
 
     }
 
+6. 箭头函数
+    let fun =function(){
+
+    }
+    let fun =()=> console.log('箭头函数‘)
+    （）形参 
+    // 形参
+    //1.没有形参的时候
+    let fun1 = ()=>
+
+    //  2.只有一个形参的时候
+    let fun2 = a => console.log(a);
+    fun2('aaa');
+
+    //3.两个及两个以上的形参的时候 （）不能省略
+    let fun 3 = (x,y)=> 
+    fun3(2, 4);
+
+    函数体的情况
+    // 1.函数体只有一条语句或者是表达式的时候   {} 可以省略 --->会自动返回语句执行的结果或者是表达式的结果
+    let fun4 =(x,y) => x+y;
+    {return X+Y}
+    console.log(fun4(24,36));
+
+    // 2.函数体不止一条语句或者是表达式的情况 {} 不可以省略
+    let fun5 = (x, y) =>{
+        console.log(x+y);
+        return x + y;
+    }
+    fun5(3,4);
+
+    箭头函数的特点
+    1.简洁
+    2.箭头函数没有自己的this, 箭头函数的this不是调用的时候决定的，而是在定义的时候处在对象就是他的this
+    3.扩展理解,看他外层有没有函数，外层有函数当前函数的this和外层的this一样，没有指向window
+ 
+    //测试箭头函数的this
+    let btn1 = document.getElementById('btn1')
+    let btn2 = document.getElementById('btn2')
+
+    btn1.onclick = function(){
+        alert(this);
+    }
+    btn2.onclick = ()=>{
+        alert(this);
+    }
+    let obj ={
+        name:'箭头函数',
+        getName: function(){
+            btn2.onclick = ()=>{
+                console.log(this);
+            } 
+        }
+    }
+    obj.getname();
+
+7. 三点运算符
+    用途
+    1. rest(可变)参数
+    *用来取代arguments 但比argumrnts灵活，只能是最后部分形参参数
+
+    function foo(a,b){
+        console.log(arguments);
+        arguments.callee();
+    }
+    foo(2, 3)
 
 
+    function foo(...value){
+        console.log(value)
+        value.forEach(function (item,index){
+            console.log(item, index);
+        })
+    }
+    value前面要是有站位符。使用三点的形参必须放在最后面
+    foo(2, 3, 4, 5)
 
+    let arr = [1,6]
+    let arr1 = [2,3,4,5];
+    arr =  [1,...arr1,6];
+    console.log(arr)
+
+8. 形参默认值
+    形参的默认值 ---当不传入参数的时候默认使用形参的默认值
+
+    function point(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    let point = new point(23, 35)
+    console.log(point)
+
+    let point1 = new point();
+    function point(x=0,y=0){
+    }
+    point1 = (0,0)
