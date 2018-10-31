@@ -261,4 +261,31 @@
        ]
    }
 
-24. 
+24. 发送请求
+    {
+        display: flex
+    }
+    .move{
+        display:flex;
+        flex-direction:column;
+    }
+    wx.request(OBJECT)
+    <!-- 小程序处于安全考虑所有的协议都是HTTPS协议的,如果没有在开发设置配置请求的连接是无法房顶制定的连接 -->
+    <!-- 一个微信小程序的并发网络请求数量被限制在5个 -->
+    wx.request({
+        url:mocie_url,
+        success:()=>{
+            console.log(data)
+        }
+    })
+
+25. navigator
+    <navigator url=""?index={index}>
+    <!-- 跳转 -->
+
+    </navigator>
+    onload(option){
+        console.log(option)
+    }
+
+26. 
