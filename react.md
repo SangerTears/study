@@ -56,10 +56,37 @@
         以组件化的编写方式一个个组件的编写
 
 
-第二章:React面向组件编程
+第二章:React面向组件编程 js面向对象编程 面对模块 面对组件
 
 1. 基本理解和使用
     MyComponent
     a.工厂函数定义组件
     b.ES6类组件
+2. 组件的三大属性: state
+    a.state 是组建对象组重要的属性,值是对象(可以包含多个数据)
+    b. 组件被称为"状态机",通过更新组件的state来更新对应的页面显示(重新渲染组件)
+3.  a.  初始化状态
+        constructor(props){
+            super(props)
+            this.state ={
+                stateProp1:value1,
+                stateProp2:value2,
+            }
+        }
+    b.  读取某个状态值
+        this.state.statePropertyName
+    c.  更新状态---->组件界面更新
+        this.setState({
+            stateProp1: value1,
+            stateProp2: value2,
+        })
+4. props
+    默认属性值
+    Person.defaultProps = {
+        name:'Mary'
+    }
 
+    对props中的属性值进行类型限制的和必要性限制
+    Person.propTypes = {
+        name:React.PropTypes.string.isRequired
+    }
