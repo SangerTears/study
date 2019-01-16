@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>事件冒泡和事件捕获</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+        div{
+            background-color: blueviolet;
+            border: 1px solid;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv">
+        <p id="myP">点击该段落,我是冒泡</p>
+    </div>
+    <div id="myDiv2">
+        <p id="myP2">点击该段落,我是捕获</p>
+    </div>
+    <script>
+        document.getElementById('myP').addEventListener('click', function () {
+            alert('你点击了p元素!');
+        }, false);
+        document.getElementById('myDiv').addEventListener('click', function(){
+            alert('你点击了Div 元素');
+        }, false);
+        document.getElementById('myP2').addEventListener('click', function () {
+            alert('你点击了P2元素');
+        }, true);
+        document.getElementById('myDiv2').addEventListener('click', function () {
+            alert('你点击了Div元素');
+        }, true);
+    </script>
+</body>
+</html>

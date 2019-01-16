@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <script src="../build/tracking-min.js"></script>
+</head>
+<body>
+    <video id="myVideo" width="640" height="480" preload autoplay loop muted></video>
+    <script>
+        // 打开chrome摄像头
+        navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.wekitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;
+        navigator.getUserMedia({video:true}, gotStream, noStream);
+        function gotStream(stream) {
+            myVideo.src = URL.createObjectURL(stream);
+            myVideo.onerror = function (){
+                stream.stop();
+            }
+            stream.onended = noStream;
+            myVideo.onloadedmetadata = function(){
+                alert('摄像头成功打开!')
+            }
+        }
+        function noStream(err) {
+            alert(err);
+        }
+        // 模板代码
+        var colors = new tracking.ColorTracker(['magenta',  'cyan', 'yellow']);
+        colors.on('track', function(event){
+            if(event.data.length===0){
+            }
+            else{
+                event.data.forEach(function(rect){
+                    console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+                });
+            }
+        });
+        tracking.track('#myVideo', colors)
+    </script>
+</body>
+</html>
