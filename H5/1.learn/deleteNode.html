@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #inner2 {
+            position: absolute;
+        }
+
+        #wrap {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <ul class='list'>
+        <li>11111<a href="javascript:;">删除</a></li>
+        <li>22222<a href="javascript:;">删除</a></li>
+        <li>33333 <a href="javascript:;">删除</a></li>
+        <li>4444 <a href="javascript:;">删除</a></li>
+        <li>555555<a href="javascript:;">删除</a></li>
+        <li>66666666 <a href="javascript:;">删除</a></li>
+    </ul>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var aNode =  document.querySelectorAll('.list> li > a');
+        for(var i = 0; i< aNode.length; i++){
+            // 回调函数,要上一个函数执行完成之后才行.
+            // 数据是最重要的
+            aNode[i].onclick = function(){
+                console.log(i);
+                this.parentNode.style.display='none';
+            }
+        }
+    }
+</script>
+
+</html>

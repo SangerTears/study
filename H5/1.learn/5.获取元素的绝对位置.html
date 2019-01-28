@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" id='html'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #wrap {
+            position: absolute;
+            background: pink;
+            left: 200px;
+            top: 200px;
+        }
+
+        #inner1 {
+            position: absolute;
+            background: deeppink;
+            left: 150px;
+            top: 150px;
+        }
+        div{
+            height: 200px;
+            width: 200px;
+        }
+
+    </style>
+</head>
+
+<body id="body">
+    <div id="wrap">
+        <div id="inner1">inner1
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    // 获取元素在页面中的位置
+    // 绝对位置:到body的距离
+    // 绝对位置: 到视口的距离
+    window.onload = function () {
+        // console.log(inner1.offsetTop, inner1.offsetLeft)
+        var inner1 = document.querySelector('#inner1');
+        
+    }
+ 
+</script>
+
+</html>
