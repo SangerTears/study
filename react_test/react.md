@@ -89,4 +89,6 @@
     对props中的属性值进行类型限制的和必要性限制
     Person.propTypes = {
         name:React.PropTypes.string.isRequired
+        age:React.PropTypes.number.isRequired
     }
+5.refs

@@ -25,11 +25,11 @@
         // 2.渲染组件标签   渲染虚拟Dom
         ReactDOM.render(<MyComponent />,document.getElementById('test1'))
 
-        // 方法2:ES6类组件(复杂组件)
+        // 方法2:ES6类组件(复杂组件)继承
         class MyComponent2 extends React.Component {
             render (){
                 console.log(this);
-                return  <h2>ES6类组件</h2>
+                return  <h2>ES6类组件(复杂的)</h2>
             }
         }
         ReactDOM.render(<MyComponent2 />,document.getElementById('test2'))
