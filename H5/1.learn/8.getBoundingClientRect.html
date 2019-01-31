@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" id='html'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            /* overflow: hidden; */
+        }
+
+        #wrap {
+            position: absolute;
+            background: pink;
+            left: 200px;
+            top: 200px;
+        }
+
+        #inner1 {
+            position: absolute;
+            background: deeppink;
+            left: 150px;
+            top: 150px;
+        }
+
+        div {
+            height: 200px;
+            width: 200px;
+            border: 10px solid #000;
+        }
+    </style>
+</head>
+
+<body id="body" style='height:3000px;'>
+    <div id="wrap">
+        <div id="inner1">inner1
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+//  getBoundingClientRect: 一个元素四个角的相对位置
+//  getBoundingClientRect: + 滚动条滚动时元素滚动的距离,绝对位置margin, padding都要清除
+    /*
+        元素右下角的相对位置
+        bottom: 550
+        right: 550
+        
+        元素左上角的相对位置
+        left: 350
+        top: 350
+
+        元素自border-box的尺寸
+        width: 200
+        height: 200
+
+        x: 350
+        y: 350
+    */
+    window.onload = function () {
+        // console.log(inner1.offsetTop, inner1.offsetLeft)
+        var inner1 = document.querySelector('#inner1');
+        // 这个API
+        var point = inner1.getBoundingClientRect();
+        console.log(point);
+    }
+</script>
+
+</html>
