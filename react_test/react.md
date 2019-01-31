@@ -91,4 +91,14 @@
         name:React.PropTypes.string.isRequired
         age:React.PropTypes.number.isRequired
     }
-5.refs
+    外部传递的数据
+
+5. refs
+    绑定数据
+
+6. 功能界面的组件化编码流程(重要的))
+    1. 拆分组件: 拆分接卖弄,抽取组件
+    2. 实现静态组件: 使用组件实现静态页面效果
+    3. 实现动态组件
+        1.动态显示初始化数据
+        2.交互功能(从绑定时间监听开始)
