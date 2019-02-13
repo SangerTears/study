@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <script type="text/babel">
+
+   class Life extends React.Component {
+        constructor(props){
+            super(props)
+            // 初始化状态
+                this.state ={
+                    opacity: 1,
+                }
+        }
+        componentDidMount(){
+            // 启动的循环定时器
+        }
+        render (){
+                const {opacity} = this.state
+                return(
+                        <div>
+                            <h2 style={{opacity}}>{this.props.msg}</h2>
+                            <button>不活了</button>
+                        </div>
+                )
+        }
+   }
+   ReactDOM.render(<Life msg="react太难了"/>,document.getElementById('test1'))
+    </script>
+</body>
+
+</html>
