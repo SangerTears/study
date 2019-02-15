@@ -26,21 +26,38 @@
                 this.state ={
                     opacity: 1,
                 }
+            this.distroyComponent = this.distroyComponent.bind(this)
         }
         componentDidMount(){
             // 启动的循环定时器
+            this.intervalId = setInterval(() => {
+                console.log('hahah');
+                let {opacity} = this.state
+                opacity -= 0.1
+                if (opacity <= 0) {
+                    opacity = 1
+                }
+                this.setState({opacity})
+            }, 200);
+        }
+        componentWillUnmount(){
+            // 清理定时器
+            clearInterval(this.intervalId)
+        }
+        distroyComponent(){
+            ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
         }
         render (){
-                const {opacity} = this.state
-                return(
-                        <div>
-                            <h2 style={{opacity}}>{this.props.msg}</h2>
-                            <button>不活了</button>
-                        </div>
-                )
+            const {opacity} = this.state
+            return(
+                    <div>
+                        <h2 style={{opacity}}>{this.props.msg}</h2>
+                        <button onClick={this.distroyComponent}>不活了</button>
+                    </div>
+            )
         }
    }
-   ReactDOM.render(<Life msg="react太难了"/>,document.getElementById('test1'))
+    ReactDOM.render(<Life msg="react太难了"/>,document.getElementById('test1'))
     </script>
 </body>
 
