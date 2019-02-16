@@ -166,3 +166,14 @@
     function point(x=0,y=0){
     }
     point1 = (0,0)
+
+9. promise对象
+    1.理解:
+        promise对象,代表了未来某个将要发生的事件(通常是一个异步操作)
+        有了promise对象,可以将异步操作以同步的流程表达出来.避免层层嵌套(熟称"回调地域")
+        ES6的Promise是一个构造函数,用来生成Promise实例
+
+    3.Promise对象的3个状态
+        pedding: 初始化状态
+        fullfilled: 成功状态
+        rejected: 失败的状态
