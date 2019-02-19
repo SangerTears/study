@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 创建symbol属性值
+        let symbol= Symbol();
+        console.log(symbol);
+        let obj = {userName: 'kebi', age:39};
+        // obj.sex = '男'
+        obj[symbol] = "hello" //[]属性选择器
+        console.log(obj);
+        // for in, for of不能遍历symbol属性
+        for(let i in obj){
+            console.log(i);
+        }
+        
+        let symbol2 = Symbol("one");
+        let symbol3 = Symbol("two");
+        console.log(symbol2 === symbol3);
+        // Symbol属性值对应的值是惟一的
+        console.log(symbol2,symbol3);
+
+        // 可以去定义常量
+        const Person_key = Symbol('Person_key');
+        console.log(Person_key);
+    </script>
+</body>
+</html>

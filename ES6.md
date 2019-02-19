@@ -177,3 +177,44 @@
         pedding: 初始化状态
         fullfilled: 成功状态
         rejected: 失败的状态
+
+10. Symbol:
+    ES5中对象的属性名都是字符串,容易造成重名,污染环境
+    Symbol:
+        概念:ES6中添加了一种原始数据类型symbol(已有的原始数据类型:String,Number,Boolean,null,undefined,对象)
+    特点:
+        1.Symbol属性值对应的值是惟一的,解决命名冲突问题
+        2.Symbol值不能与其他数据进行计算,包括同字符串拼接
+        3.for in, for of遍历事不会遍历symbol属性
+        使用
+        1.调用symbol函数得到symbol值
+        2.传参标识
+        3.内置Symbol值
+            除了定义自己使用的Symbol值以外,ES6还提供了11个内置的Symbol值,指向语言内部使用的方法
+            Symbol.iterator
+                对象的Symbol.iteration属性,指向该对象的默认遍历器方法
+
+11. iterator 
+    概念: iterator是一种接口机制,为各种不同的数据结构提供统一的访问机制
+    作用: 
+        1.为各种数据结构,提供一个统一的,简便的访问接口;
+        2.是的数据结构的成员能够按某种次序排序
+        3.ES6创造了一种新的遍历命令for...of循环,Iteration接口主要供for...of消费
+    工作原理
+        创建一个指针对象(遍历器对象),指向数据结构的起始位置.
+        第一次调用next方法,指针自动指向数据结构的第一个成员
+        接下来不断的调用next方法,指针会一直往后移动,知道指向最后一个成员
+        每调用方法返回的是一个包含value和done的对象,{value:当前成员的值,done:布尔值}
+        * value表示当前成员的值,done对象的布尔值表示当前的数据的结构是否遍历结束.
+        *   当遍历结束的时候返回的是value值是undefined,done值为true
+        原生具备iteration接口的数据(可用for of遍历)
+        将iteration接口部署到指定的数据类型上,可以使用for of去循环遍历
+        数组, 字符串, arguments, set容器, map容器
+        obj没有这个接口属性
+    
+        
+12. Generator函数
+    概念:
+        1.ES6提供的解决一步编程的方案之一
+        2.Generator函数是一个状态机智,内部封装了不同状态的数据
+        

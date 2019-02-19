@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 模拟指针对象(遍历器对象)
+        function myIteration(arr) { //iterator接口
+            let nextIndex = 0; //记录指针的位置;
+            return{ //遍历器对象
+                next: function (){
+                    return nextIndex<arr.length?{value:arr[nextIndex++], done:false}: { value: undefined, done: true }
+                }
+            }
+        }
+        // 准备一个数据
+        let arr = [1,4,65,'abc'];
+        let iterationObj = myIteration(arr);
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+        console.log(iterationObj.next());
+
+        // 将iteration接口部署到指定的数据类型上,可以使用for of去循环遍历
+        // 数组, 字符串, arguments, set容器, map容器
+        for (let i of arr) {
+            console.log(i);
+        }
+
+        let str = 'abcd'
+        for (let i of str){
+            console.log(i);
+        }
+
+        function fun() {
+           for ( let i of arguments){
+               console.log(i);
+           }
+        }
+        fun(1,4,5,'abc')
+        // arguments伪数组
+
+        // let obj = {username: 'kebi', age:39}
+        // for (let i of obj){
+        //     console.log(i);
+        // }
+        // obj没有这个接口属性
+
+        // 等同于在指定的数据内结构上部署了iterator接口
+        // 当时用 for of 去遍历某一个数据结构的时候,首先找Symbol.iterator,找到了就去遍历,没有找到就不能遍历 obj is not iterable
+        let targetData = {
+            [Symbol.iterator]: function(){
+                let nextIndex = 0; //记录指针的位置;
+                return { //遍历器对象
+                    next: function () {
+                        return nextIndex < this.length ? { value: this[nextIndex++], done: false } : { value: undefined, done: true }
+                    }
+                }
+            }
+        }
+
+        // 使用三点运算符,解构赋值,默认去调用iteration接口
+        let arr2 =[1,7]
+        let arr3 = [4,5,6,7]
+        arr2 = [1, ...arr3, 7]
+        console.log(arr2);
+        
+        let [a,b] = arr2
+        console.log(a,b)
+    </script>
+</body>
+</html>

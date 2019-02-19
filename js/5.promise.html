@@ -29,7 +29,47 @@
         //     console.log("shibai");
         // }
         // )
-        
+        // 定义获取新闻的功能函数
+        function getNews() {
+            let promise = new Promise((resolve,reject)=>{
+                // 状态:初始化
+                // 执行异步任务
+                // 创建xmlHttp实例对象
+                let xmlHttp = new XMLHttpRequest();
+                // 绑定监听 readystate
+                xmlHttp.onreadystatechange = function (){
+                    if(xmlHttp.readyState == 4){ //请求成功
+                        if(xmlHttp.status == 200){
+                            console.log(xmlHttp.responseText);
+                            // 修改状态
+                            resolve(xmlHttp.responseText); //修改promise的状态为成功的状态
+                        }
+                    }else{ //请求失败
+                        reject('暂时没有新闻内容');
+                    }
+                };
+                // open 设置请求的方式以及url
+                xmlHttp.open('GET', url);
+                // 发送
+                xmlHttp.send();
+            })
+            return promise;
+        }
+        getNews(url)
+            .then((data)=>{
+                console.log(data);
+                // 发送请求,获取评论内容做准备url
+                let commentsUrl = JSON.parse(data).commentsUrl
+                let url = 'http://localhost:3000'+ commentsUrl
+                return getNews(url);
+            }, (error)=>{
+                console.log(error);
+            })
+            .then((data)=>{
+                console.log(data);
+            },()=>{
+
+            })
     </script>
 </body>
-</html>
+</html> 
