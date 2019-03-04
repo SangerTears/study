@@ -23,19 +23,28 @@
         <p id="myP2">点击该段落,我是捕获</p>
     </div>
     <script>
-        document.getElementById('myP').addEventListener('click', function () {
-            alert('你点击了p元素!');
-        }, false);
-        document.getElementById('myDiv').addEventListener('click', function(){
-            alert('你点击了Div 元素');
-        }, false);
-        document.getElementById('myP2').addEventListener('click', function () {
-            alert('你点击了P2元素');
-        }, true);
-        document.getElementById('myDiv2').addEventListener('click', function () {
-            alert('你点击了Div元素');
-        }, true);
+        // document.getElementById('myP').addEventListener('click', function () {
+        //     alert('你点击了p元素!');
+        // }, false);
+        // document.getElementById('myDiv').addEventListener('click', function(){
+        //     alert('你点击了Div 元素');
+        // }, false);
+        // document.getElementById('myP2').addEventListener('click', function () {
+        //     alert('你点击了P2元素');
+        // }, true);
+        // document.getElementById('myDiv2').addEventListener('click', function () {
+        //     alert('你点击了Div元素');
+        // }, true);
 
+        var value = 1;
+        function foo() {
+            console.log(value);
+        }
+        function bar() {
+            var value = 2;
+            foo();
+        }
+        bar();
     </script>
 </body>
 </html>
