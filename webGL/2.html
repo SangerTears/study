@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="c"></canvas>
+
+    <script type='text/javascript'>
+        var canvas = document.getElementById('c')
+        var gl = canvas.getConText('webgl')
+        if(!gl){
+            // 你不能使用webgl
+        }
+        // 创建着色器方法，输入参数：渲染上下文，着色器类型，数据源
+            function createShader(gl, type, source){
+                
+            }
+    
+
+    </script>
+    <script id="2d-vertex-shader" type="notjs">
+        //一个属性变量，将会从缓冲种获取数据
+        attribtue vec4 a_position;
+        //所有着色器都有一个main方法
+        void main(){
+            // gl_Position 是一个定点着色器主要设置的变量
+            gl_Position = a_position;
+        }
+    </script>
+    <script id="2d-fragment-shader" type="notjs">
+        // 片断找色器没有默认的精度，
+        // mdiump是一个不错的默认值，代表"medium prection"
+        precision mediump float;
+        void main(){
+            //gl_FragColor是一个片断着色器主要设置的变量
+            gl_FragColor  = vec4(1, 0, 0.5, 1); //返回”紫色“
+        }
+    </script>
+</body>
+</html>
